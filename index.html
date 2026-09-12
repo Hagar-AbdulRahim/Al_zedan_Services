@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حج عرفة | من الرف إلى سلة المشتريات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FBF7EE;
+      --paper: #FFFFFF;
+      --ink: #20241D;
+      --muted: #6E6C5E;
+      --green-950: #0B3324;
+      --green-800: #0F4A34;
+      --green-600: #17734F;
+      --green-400: #2E9C6E;
+      --red-700: #B41E2C;
+      --red-500: #DA3444;
+      --wine-800: #5A1E38;
+      --wine-600: #8C3155;
+      --wine-400: #B85C82;
+      --gold-700: #A87B1E;
+      --gold-500: #D3A83C;
+      --gold-300: #EFCF7C;
+      --line: #E7E0CC;
+      --shadow: 0 20px 45px -18px rgba(11, 51, 36, .35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1100px 500px at 85% -10%, rgba(23, 115, 79, .10), transparent 60%),
+        radial-gradient(900px 500px at 10% 0%, rgba(211, 168, 60, .14), transparent 55%),
+        var(--cream);
+      color: var(--ink);
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Amiri', 'Cairo', serif;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 48px);
+    }
+
+    /* reveal-on-scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s cubic-bezier(.2, .7, .3, 1), transform .7s cubic-bezier(.2, .7, .3, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger.in>* {
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
+
+    /* ================= NAV ================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 247, 238, .88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(16px, 4vw, 48px);
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--green-950);
+    }
+
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red-500);
+      box-shadow: 0 0 0 4px rgba(218, 52, 68, .18);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-weight: 700;
+      color: var(--green-800);
+      font-size: 15px;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: var(--gold-500);
+      transition: width .3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--green-950);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--green-950);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 40px -14px rgba(11, 51, 36, .5);
+    }
+
+    /* Mobile menu button */
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 60;
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--green-950);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      padding: 60px 0 40px;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .55;
+      z-index: 0;
+    }
+
+    .blob.b1 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, var(--green-400), transparent 70%);
+      top: -220px;
+      right: -160px;
+      animation: float1 14s ease-in-out infinite;
+    }
+
+    .blob.b2 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, var(--gold-300), transparent 70%);
+      bottom: -180px;
+      left: -140px;
+      animation: float2 16s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(-30px, 30px);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(25px, -25px);
+      }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--green-800);
+      box-shadow: 0 8px 20px -12px rgba(0, 0, 0, .15);
+    }
+
+    .badge-tag .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-500);
+      box-shadow: 0 0 0 0 rgba(218, 52, 68, .6);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(218, 52, 68, .55);
+      }
+
+      70% {
+        box-shadow: 0 0 0 12px rgba(218, 52, 68, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(218, 52, 68, 0);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.18;
+      margin: 0 0 18px;
+      color: var(--green-950);
+      font-weight: 700;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red-700);
+      position: relative;
+    }
+
+    .hero h1 em::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 2px;
+      height: .34em;
+      z-index: -1;
+      background: linear-gradient(90deg, var(--gold-300), transparent);
+      border-radius: 6px;
+    }
+
+    .hero p.lead {
+      font-size: clamp(15px, 1.6vw, 18.5px);
+      color: var(--muted);
+      max-width: 52ch;
+      margin: 0 0 30px;
+      line-height: 1.85;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-weight: 800;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green-800), var(--green-950));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 46px -16px rgba(11, 51, 36, .55);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--green-950);
+      border: 1.5px solid var(--line);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold-500);
+      transform: translateY(-3px);
+    }
+
+    .sohag-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--green-800);
+      background: linear-gradient(90deg, rgba(211, 168, 60, .16), transparent);
+      border-right: 3.5px solid var(--gold-500);
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin: 0 0 16px;
+      line-height: 1.7;
+    }
+
+    .partner-line {
+      font-size: 13.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .partner-line b {
+      color: var(--green-800);
+    }
+
+    /* product showcase */
+    .showcase {
+      position: relative;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .showcase-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 480px;
+      max-height: 420px;
+    }
+
+    .jar {
+      position: absolute;
+      border-radius: 22px 22px 10px 10px;
+      box-shadow: 0 24px 40px -16px rgba(0, 0, 0, .35);
+      animation: bob 5.5s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .jar span {
+      position: absolute;
+      bottom: 12px;
+      right: 4px;
+      left: 4px;
+      text-align: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
+    .jar.milk {
+      width: 126px;
+      height: 236px;
+      right: 38%;
+      top: 8%;
+      background: linear-gradient(160deg, #ffffff, #f2f7f2);
+      border: 3.5px solid var(--green-800);
+      animation-delay: .2s;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+    }
+
+    .jar.milk .bottle-emblem {
+      width: 108px;
+      background: linear-gradient(180deg, #ffffff 0%, #faf6ee 100%);
+      border: 1.5px solid var(--gold-500);
+      border-radius: 14px;
+      padding: 10px 4px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 6px 14px rgba(11, 51, 36, 0.10), inset 0 0 12px rgba(211, 168, 60, 0.14);
+      position: relative;
+    }
+
+    .jar.milk .emblem-crown {
+      color: var(--gold-500);
+      font-size: 13px;
+      line-height: 1;
+      margin-bottom: 2px;
+      filter: drop-shadow(0 1px 2px rgba(168, 123, 30, 0.3));
+    }
+
+    .jar.milk .emblem-brand-name {
+      font-family: 'Aref Ruqaa', 'Amiri', serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--green-950);
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+      margin-bottom: 4px;
+      white-space: normal;
+    }
+
+    .jar.milk .emblem-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 80%;
+      margin: 2px 0 5px;
+    }
+
+    .jar.milk .emblem-line .e-bar {
+      flex: 1;
+      height: 1px;
+      background: var(--gold-500);
+      opacity: 0.6;
+    }
+
+    .jar.milk .emblem-line .e-star {
+      font-size: 8px;
+      color: var(--gold-500);
+      line-height: 1;
+    }
+
+    .jar.milk .emblem-tagline {
+      font-family: 'Cairo', sans-serif;
+      font-size: 8px;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green-800), var(--green-950));
+      padding: 2.5px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .jar.milk::before {
+      content: "";
+      position: absolute;
+      top: -22px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 44px;
+      height: 26px;
+      background: var(--green-800);
+      border-radius: 6px 6px 0 0;
+    }
+
+    .jar.p1 {
+      width: 78px;
+      height: 150px;
+      right: 8%;
+      top: 32%;
+      background: linear-gradient(160deg, var(--red-500), var(--red-700));
+      animation-delay: 0s;
+      z-index: 2;
+    }
+
+    .jar.p2 {
+      width: 78px;
+      height: 170px;
+      right: 62%;
+      top: 38%;
+      background: linear-gradient(160deg, var(--green-600), var(--green-950));
+      animation-delay: .6s;
+      z-index: 2;
+    }
+
+    .jar.p3 {
+      width: 78px;
+      height: 140px;
+      left: 6%;
+      top: 22%;
+      background: linear-gradient(160deg, var(--gold-500), var(--gold-700));
+      animation-delay: .9s;
+      z-index: 1;
+    }
+
+    .jar.p4 {
+      width: 78px;
+      height: 158px;
+      left: 24%;
+      top: 52%;
+      background: linear-gradient(160deg, var(--green-400), var(--green-600));
+      animation-delay: .3s;
+      z-index: 2;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 2px dashed rgba(23, 115, 79, .25);
+      animation: spin 40s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ================= SECTION LABELS ================= */
+    .section {
+      padding: 64px 0;
+    }
+
+    .kicker {
+      display: inline-block;
+      background: var(--green-950);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: clamp(24px, 3.4vw, 38px);
+      color: var(--green-950);
+      margin: 0 0 14px;
+      font-weight: 700;
+    }
+
+    .section p.sub {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 64ch;
+      line-height: 1.85;
+      margin: 0 0 40px;
+    }
+
+    /* ================= IDEA / JOURNEY ================= */
+    .idea-panel {
+      background: linear-gradient(135deg, var(--green-950), var(--green-800));
+      border-radius: 28px;
+      padding: clamp(24px, 4vw, 52px);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -20px rgba(11, 51, 36, 0.4);
+    }
+
+    .idea-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .5;
+      background: radial-gradient(500px 300px at 90% 0%, rgba(211, 168, 60, .28), transparent 60%);
+    }
+
+    .idea-top {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+
+    .idea-top h2 {
+      color: #fff;
+    }
+
+    .idea-top p {
+      color: rgba(255, 255, 255, .86);
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .steps {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step .num {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      border: 1.5px solid rgba(255, 255, 255, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--gold-300);
+      transition: transform .3s ease, background .3s ease, color .3s ease;
+    }
+
+    .step:hover .num {
+      transform: translateY(-6px) scale(1.06);
+      background: var(--gold-500);
+      color: var(--green-950);
+      border-color: transparent;
+    }
+
+    .step span {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .95);
+      display: block;
+      line-height: 1.4;
+    }
+
+    /* ================= PACKAGES ================= */
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .pkg {
+      background: var(--paper);
+      border: 1.5px solid var(--line);
+      border-radius: 26px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform .4s cubic-bezier(.2, .8, .3, 1), box-shadow .4s ease, border-color .4s ease;
+    }
+
+    .pkg:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+
+    .pkg-head {
+      padding: 30px 26px 24px;
+      color: #fff;
+      position: relative;
+    }
+
+    .pkg-head .icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pkg-head h3 {
+      font-size: 24px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+
+    .pkg-head .tag {
+      font-size: 14px;
+      font-weight: 700;
+      opacity: .92;
+    }
+
+    .pkg.starter .pkg-head {
+      background: linear-gradient(135deg, var(--green-600), var(--green-800));
+    }
+
+    .pkg.plus .pkg-head {
+      background: linear-gradient(135deg, var(--wine-600), var(--wine-800));
+    }
+
+    .pkg.elite {
+      border: 2px solid var(--gold-500);
+      transform: translateY(-14px);
+      box-shadow: 0 30px 60px -24px rgba(168, 123, 30, .45);
+    }
+
+    .pkg.elite .pkg-head {
+      background: linear-gradient(135deg, var(--green-950), #08160f);
+    }
+
+    .pkg.elite:hover {
+      transform: translateY(-22px);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 18px;
+      left: -42px;
+      background: var(--gold-500);
+      color: var(--green-950);
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 48px;
+      transform: rotate(-45deg);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, .2);
+    }
+
+    .crown {
+      position: absolute;
+      top: -10px;
+      right: 26px;
+      font-size: 34px;
+      animation: crownwiggle 3.4s ease-in-out infinite;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35));
+    }
+
+    @keyframes crownwiggle {
+
+      0%,
+      100% {
+        transform: rotate(-6deg);
+      }
+
+      50% {
+        transform: rotate(6deg);
+      }
+    }
+
+    .pkg-body {
+      padding: 22px 26px 12px;
+      flex: 1;
+    }
+
+    .pkg-body p.desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 16px;
+    }
+
+    .feat-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .feat-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 14.5px;
+    }
+
+    .feat-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feat-list li .ck {
+      flex: 0 0 20px;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green-600);
+      color: #fff;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .pkg.plus .ck {
+      background: var(--wine-600);
+    }
+
+    .pkg.elite .ck {
+      background: var(--gold-500);
+      color: var(--green-950);
+    }
+
+    /* Creative Standout Feature Highlight Cards in Package */
+    .feat-list li.feat-game {
+      font-weight: 800;
+      color: #9E1B28;
+      background: linear-gradient(135deg, #FFF0F2 0%, #FFE2E6 100%);
+      border: 1.5px solid #DA3444;
+      border-right: 5px solid #DA3444;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      box-shadow: 0 8px 22px -6px rgba(218, 52, 68, 0.3);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feat-list li.feat-game:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 28px -6px rgba(218, 52, 68, 0.4);
+    }
+
+    .feat-list li.feat-game .ck {
+      background: linear-gradient(135deg, #FF3B4E, #B41E2C);
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(218, 52, 68, 0.4);
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      margin-top: 2px;
+    }
+
+    .feat-list li.feat-game .tag-badge {
+      font-size: 10.5px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #DA3444, #B41E2C);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 3px 8px rgba(218, 52, 68, 0.3);
+    }
+
+    .feat-list li.feat-skate {
+      font-weight: 800;
+      color: #5A1E38;
+      background: linear-gradient(135deg, #FAF0F7 0%, #F0D4E7 100%);
+      border: 1.5px solid #8C3155;
+      border-right: 5px solid #8C3155;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      box-shadow: 0 8px 22px -6px rgba(140, 49, 85, 0.3);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feat-list li.feat-skate:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 28px -6px rgba(140, 49, 85, 0.4);
+    }
+
+    .feat-list li.feat-skate .ck {
+      background: linear-gradient(135deg, #A83868, #5A1E38);
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(140, 49, 85, 0.4);
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      margin-top: 2px;
+    }
+
+    .feat-list li.feat-skate .tag-badge {
+      font-size: 10.5px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #8C3155, #5A1E38);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 3px 8px rgba(140, 49, 85, 0.3);
+    }
+
+    .pkg-goal {
+      margin: 18px 26px 26px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 13.5px;
+      padding: 14px;
+      border-radius: 14px;
+      color: #fff;
+    }
+
+    .pkg.starter .pkg-goal {
+      background: var(--green-600);
+    }
+
+    .pkg.plus .pkg-goal {
+      background: var(--wine-600);
+    }
+
+    .pkg.elite .pkg-goal {
+      background: linear-gradient(90deg, var(--gold-500), var(--gold-300));
+      color: var(--green-950);
+    }
+
+    /* ================= SERVICES STRIP ================= */
+    .services-wrap {
+      background: var(--paper);
+      border: 2px solid var(--line);
+      border-radius: 28px;
+      padding: 32px clamp(16px, 3vw, 36px);
+      display: flex;
+      align-items: stretch;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px -15px rgba(11, 51, 36, 0.12);
+    }
+
+    .services-label {
+      background: linear-gradient(135deg, var(--green-950), var(--green-800));
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 20px 22px;
+      border-radius: 20px;
+      text-align: center;
+      flex: 0 0 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.5;
+      box-shadow: 0 8px 20px -10px rgba(11, 51, 36, 0.4);
+    }
+
+    .services-box {
+      flex: 1;
+      min-width: 280px;
+      max-width: 100%;
+      background: linear-gradient(135deg, #FBF8F0 0%, #F5EFE0 100%);
+      border: 2px solid var(--gold-500);
+      border-radius: 22px;
+      padding: 16px 20px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03), 0 8px 25px -10px rgba(168, 123, 30, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .services-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .scroll-hint {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold-700);
+      background: rgba(211, 168, 60, 0.18);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .service-scroll {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 12px 4px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--green-600) rgba(231, 224, 204, 0.5);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .service-scroll::-webkit-scrollbar {
+      height: 7px;
+    }
+
+    .service-scroll::-webkit-scrollbar-track {
+      background: rgba(231, 224, 204, 0.5);
+      border-radius: 10px;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb {
+      background: var(--green-600);
+      border-radius: 10px;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb:hover {
+      background: var(--green-800);
+    }
+
+    .service-item {
+      text-align: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--ink);
+      width: 110px;
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 8px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(231, 224, 204, 0.8);
+      box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.06);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px -6px rgba(11, 51, 36, 0.15);
+      border-color: var(--green-600);
+    }
+
+    .service-item .ic {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: transform .3s ease;
+    }
+
+    /* Distinct item colors */
+    .service-item.item-podium .ic {
+      background: linear-gradient(135deg, #FFF3D6, #FFE5A3);
+      color: var(--gold-700);
+    }
+
+    .service-item.item-flyer .ic {
+      background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+      color: #1565C0;
+    }
+
+    .service-item.item-blogger .ic {
+      background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+      color: #7B1FA2;
+    }
+
+    .service-item.item-video .ic {
+      background: linear-gradient(135deg, #E0F2F1, #B2DFDB);
+      color: #00695C;
+    }
+
+    .service-item.item-team .ic {
+      background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+      color: #2E7D32;
+    }
+
+    .service-item.item-reports .ic {
+      background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+      color: #F57F17;
+    }
+
+    /* Game item in services */
+    .service-item.highlight.item-game {
+      border: 2px solid #DA3444;
+      background: linear-gradient(180deg, #FFF0F2 0%, #FFE2E6 100%);
+      width: 124px;
+      box-shadow: 0 8px 20px -4px rgba(218, 52, 68, 0.35);
+      position: relative;
+    }
+
+    .service-item.highlight.item-game .ic {
+      background: linear-gradient(135deg, #FF3B4E, #B41E2C);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(218, 52, 68, 0.45);
+      animation: pulse 2s infinite;
+      width: 56px;
+      height: 56px;
+      font-size: 25px;
+    }
+
+    .service-item.highlight.item-game span {
+      color: #9E1B28;
+      font-weight: 900;
+    }
+
+    .service-item.highlight.item-game::before {
+      content: "🔥 حصرية";
+      position: absolute;
+      top: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      background: #DA3444;
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 3px 8px rgba(218, 52, 68, 0.4);
+    }
+
+    /* Skate item in services */
+    .service-item.highlight-skate {
+      border: 2px solid #8C3155;
+      background: linear-gradient(180deg, #FAF0F7 0%, #F0D4E7 100%);
+      width: 124px;
+      box-shadow: 0 8px 20px -4px rgba(140, 49, 85, 0.35);
+      position: relative;
+    }
+
+    .service-item.highlight-skate .ic {
+      background: linear-gradient(135deg, #A83868, #5A1E38);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(140, 49, 85, 0.45);
+      animation: skateBounce 2.4s ease-in-out infinite;
+      width: 56px;
+      height: 56px;
+      font-size: 25px;
+    }
+
+    .service-item.highlight-skate span {
+      color: #5A1E38;
+      font-weight: 900;
+    }
+
+    .service-item.highlight-skate::before {
+      content: "⚡ ميدانية";
+      position: absolute;
+      top: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      background: #8C3155;
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 3px 8px rgba(140, 49, 85, 0.4);
+    }
+
+    @keyframes skateBounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-6px) rotate(4deg);
+      }
+    }
+
+    /* Journey box */
+    .journey {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #fff, var(--cream));
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      padding: 16px 22px;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.05);
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .journey-title {
+      background: var(--green-950);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .stops {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .stop .dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold-500);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13.5px;
+      box-shadow: 0 3px 8px rgba(211, 168, 60, 0.3);
+    }
+
+    .stop small {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-800);
+      white-space: nowrap;
+    }
+
+    .dash {
+      width: 22px;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #cfc9ab 0 5px, transparent 5px 9px);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .dash::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: 0;
+      width: 8px;
+      height: 4px;
+      background: var(--red-500);
+      border-radius: 2px;
+      animation: travel 2.4s linear infinite;
+    }
+
+    @keyframes travel {
+      0% {
+        right: 100%;
+      }
+
+      100% {
+        right: -20%;
+      }
+    }
+
+    .truck {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background: var(--green-950);
+      color: #fff;
+      padding: 34px 0 22px;
+      margin-top: 20px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .footer .tagline {
+      color: var(--gold-300);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 16px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, .6);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width:1180px) and (min-width:981px) {
+      .pkg-grid {
+        gap: 18px;
+      }
+
+      .pkg-head {
+        padding: 24px 20px 18px;
+      }
+
+      .pkg-body {
+        padding: 18px 20px 8px;
+      }
+    }
+
+    @media (max-width:980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        height: 320px;
+        order: -1;
+      }
+
+      .showcase-inner {
+        transform: scale(0.85);
+        transform-origin: center center;
+      }
+
+      .pkg-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pkg.elite {
+        grid-column: 1/-1;
+        transform: none;
+      }
+
+      .pkg.elite:hover {
+        transform: translateY(-10px);
+      }
+
+      .idea-top {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 24px;
+      }
+
+      .services-wrap {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 24px 18px;
+        gap: 20px;
+      }
+
+      .services-label {
+        max-width: 100%;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
+      .services-box {
+        min-width: 100%;
+        width: 100%;
+      }
+
+      .journey {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .stops {
+        width: 100%;
+        justify-content: space-around;
+        overflow-x: auto;
+        padding: 4px 0;
+      }
+    }
+
+    @media (max-width:768px) {
+      .burger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 65px;
+        right: 0;
+        left: 0;
+        background: rgba(251, 247, 238, 0.98);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        display: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .burger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .burger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+
+    @media (max-width:640px) {
+      .pkg-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pkg.elite {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width:560px) {
+      .hero {
+        padding: 36px 0 20px;
+      }
+
+      .showcase {
+        height: 270px;
+      }
+
+      .showcase-inner {
+        transform: scale(0.7);
+        transform-origin: center center;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+      }
+
+      .service-item {
+        width: 96px;
+        padding: 10px 6px;
+        font-size: 11.5px;
+      }
+
+      .service-item .ic {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+      }
+
+      .journey {
+        justify-content: center;
+      }
+
+      .stop .dot {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+
+      .stop small {
+        font-size: 10px;
+      }
+
+      .dash {
+        width: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span> حج عرفة</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#idea">فكرتنا</a>
+        <a href="#packages">الباقات</a>
+        <a href="wholesale_campaign.html">دعاية الجملة</a>
+        <a href="#services">خدمات إضافية</a>
+      </div>
+      <a href="https://wa.me/201021275207" target="_blank" rel="noopener" class="nav-cta">احجز باقتك الآن</a>
+      <button class="burger" id="burgerBtn" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-row">
+          <span class="badge-tag"><span class="pulse"></span> حملة تفعيل مبيعات وتسويق ميداني</span>
+        </div>
+        <h1>من الرف .. إلى <em>سلة المشتريات</em></h1>
+        <p class="lead">مش هنخلي العميل يشوف منتج حج عرفة على الرف وبس. هنوقفه، نعرّفه، نخليه يجرب، نديله عرض، ونساعده
+          يشتري — خطوة بخطوة لحد ما يوصل للكاشير.</p>
+        <div class="hero-ctas">
+          <a href="#packages" class="btn-primary">🚀 شوف الباقات</a>
+          <a href="wholesale_campaign.html" class="btn-ghost">🏬 باقة تجار الجملة</a>
+        </div>
+        <p class="sohag-line">📍 شركة سوهاجية متخصصة في خدمات التسويق الميداني وتفعيل المبيعات لأكبر العلامات التجارية
+        </p>
+        <div class="partner-line">🤝 بالتعاون مع <b>شركة النخبة للتوكيلات التجارية</b></div>
+      </div>
+      <div class="showcase">
+        <div class="showcase-inner">
+          <div class="ring"></div>
+          <div class="jar milk">
+            <div class="bottle-emblem">
+              <div class="emblem-crown">✦</div>
+              <div class="emblem-brand-name">خدمات ال زيدان</div>
+              <div class="emblem-line">
+                <div class="e-bar"></div>
+                <div class="e-star">★</div>
+                <div class="e-bar"></div>
+              </div>
+              <div class="emblem-tagline">شـركـة دعـايـة وتـسـويـق</div>
+            </div>
+          </div>
+          <div class="jar p1"></div>
+          <div class="jar p2"></div>
+          <div class="jar p3"></div>
+          <div class="jar p4"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="idea">
+    <div class="wrap">
+      <div class="idea-panel reveal">
+        <div class="idea-top">
+          <div>
+            <span class="kicker" style="background:var(--gold-500);color:var(--green-950);">فكرتنا</span>
+            <h2>رحلة العميل من الرف لسلة المشتريات</h2>
+          </div>
+          <p>هنوقف العميل عند الرف، نعرّفه بالمنتج، نخليه يجرب، نديله عرض مناسب، نساعده يشتري، ونقيس كل خطوة في عملية
+            البيع علشان كل حملة تبقى أفضل من اللي قبلها.</p>
+        </div>
+        <div class="steps stagger" id="stepsGrid">
+          <div class="step" style="--i:0">
+            <div class="num">١</div><span>يشوف المنتج</span>
+          </div>
+          <div class="step" style="--i:1">
+            <div class="num">٢</div><span>يتعرف عليه</span>
+          </div>
+          <div class="step" style="--i:2">
+            <div class="num">٣</div><span>يجرب عليه</span>
+          </div>
+          <div class="step" style="--i:3">
+            <div class="num">٤</div><span>يستفيد من العرض</span>
+          </div>
+          <div class="step" style="--i:4">
+            <div class="num">٥</div><span>يشتري</span>
+          </div>
+          <div class="step" style="--i:5">
+            <div class="num">٦</div><span>نحقق مبيعات أكتر</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="packages">
+    <div class="wrap">
+      <span class="kicker">باقاتنا</span>
+      <h2 class="reveal">اختاري الباقة اللي تناسب طموح حملتك</h2>
+      <p class="sub reveal">من بداية قوية لزيادة الظهور، لحملة متكاملة تهيمن على نقطة البيع بالكامل.</p>
+
+      <div class="pkg-grid">
+
+        <div class="pkg starter reveal">
+          <div class="pkg-head">
+            <span class="icon">🌱</span>
+            <h3>باقة الانطلاقة</h3>
+            <div class="tag">بداية قوية</div>
+          </div>
+          <div class="pkg-body">
+            <p class="desc">تواجد فعّال للمنتج وزيادة الظهور في نقطة البيع.</p>
+            <ul class="feat-list">
+              <li><span class="ck">✓</span>مندوبَي مبيعات في كل نقطة بيع (أحدهم عند الرف والآخر عند الكاشير)</li>
+              <li><span class="ck">✓</span>توزيع 1,000 فلاير</li>
+              <li><span class="ck">✓</span>شرح العرض والخصم</li>
+              <li><span class="ck">✓</span>متابعة يومية من الفريق</li>
+              <li><span class="ck">✓</span>زي موحد باسم الشركة (حسب المتوفر)</li>
+              <li><span class="ck">✓</span>تقرير يومي مختصر</li>
+            </ul>
+          </div>
+          <div class="pkg-goal">الهدف: زيادة الوعي وتحريك المبيعات</div>
+        </div>
+
+        <div class="pkg plus reveal">
+          <div class="pkg-head">
+            <span class="icon">⭐</span>
+            <h3>باقة التميز</h3>
+            <div class="tag">تجربة متكاملة</div>
+          </div>
+          <div class="pkg-body">
+            <p class="desc">كل ما في باقة الانطلاقة + تجربة المنتج وخلق تفاعل حقيقي مع العميل.</p>
+            <ul class="feat-list">
+              <li><span class="ck">✓</span>مندوبَي مبيعات في كل نقطة بيع</li>
+              <li><span class="ck">✓</span>توزيع 1,000 فلاير بتصميم مميز</li>
+              <li><span class="ck">✓</span>تجربة تذوق لمنتجات بن الحج عرفة (مع بوديوم عرض)</li>
+              <li><span class="ck">✓</span>زي موحد باسم الشركة</li>
+              <li><span class="ck">✓</span>تصوير ريلز بواسطة بلوجر (مع كود خاص لكل بلوجر)</li>
+              <li><span class="ck">✓</span>تقرير يومي متكامل (مبيعات - تفاعل - زيارات)</li>
+            </ul>
+          </div>
+          <div class="pkg-goal">الهدف: زيادة التفاعل وتحويل الاهتمام إلى شراء</div>
+        </div>
+
+        <div class="pkg elite reveal">
+          <div class="ribbon">الأقوى</div>
+          <span class="crown">👑</span>
+          <div class="pkg-head">
+            <span class="icon">🏆</span>
+            <h3>باقة الريادة</h3>
+            <div class="tag">أقصى تأثير .. أعلى مبيعات</div>
+          </div>
+          <div class="pkg-body">
+            <p class="desc">كل ما في باقة التميز + حملة متكاملة تغطي كل نقاط الاتصال مع العميل.</p>
+            <ul class="feat-list">
+              <li><span class="ck">✓</span>مندوبَي مبيعات في كل نقطة بيع</li>
+              <li><span class="ck">✓</span>توزيع 1,000 فلاير بتصميم مميز</li>
+              <li><span class="ck">✓</span>تجربة تذوق لمنتجات بن الحج عرفة (مع بوديوم عرض)</li>
+              <li><span class="ck">✓</span>زي موحد باسم الشركة</li>
+              <li><span class="ck">✓</span>بلوجرز مع كود خصم خاص</li>
+              <li><span class="ck">✓</span>تصوير شامل للحملة (قبل - أثناء - بعد) ريلز وصور احترافية</li>
+
+              <li class="feat-game">
+                <span class="ck">🎮</span>
+                <div>
+                  <span class="tag-badge">🔥 ميزة حصرية VIP</span><br>
+                  <b>العب واكسب:</b> نشاط تفاعلي للعملاء بجوائز فورية في نقطة البيع
+                </div>
+              </li>
+
+              <li class="feat-skate">
+                <span class="ck">🛼</span>
+                <div>
+                  <span class="tag-badge">⚡ فريق ميداني متحرك</span><br>
+                  <b>فريق الدعاية بالاسكيت:</b> فريق دعائي بزي موحد يتحرك في الشوارع والمناطق المحيطة بنقاط البيع
+                </div>
+              </li>
+
+              <li><span class="ck">✓</span>تقرير يومي + تقرير نهائي للحملة</li>
+            </ul>
+          </div>
+          <div class="pkg-goal">الهدف: هيمنة على نقطة البيع وزيادة المبيعات بشكل مستدام</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <span class="kicker">حصريًا في باقة الريادة</span>
+      <h2 class="reveal">خدمات إضافية ورحلة تسويقية متكاملة</h2>
+      <div class="services-wrap reveal">
+        <div class="services-label">خدمات إضافية ضمن باقة الريادة</div>
+
+        <div class="services-box">
+          <div class="services-box-header">
+            <span class="scroll-hint">👈 اسحب لعرض جميع الخدمات</span>
+          </div>
+          <div class="service-scroll">
+            <div class="service-item item-podium">
+              <div class="ic">☕</div>
+              <span>بوديوم عرض وتذوق</span>
+            </div>
+            <div class="service-item item-flyer">
+              <div class="ic">📋</div>
+              <span>فلايرز احترافية (1,000)</span>
+            </div>
+            <div class="service-item item-blogger">
+              <div class="ic">📲</div>
+              <span>بلوجر مؤثر (كود خاص)</span>
+            </div>
+            <div class="service-item item-video">
+              <div class="ic">🎬</div>
+              <span>تصوير احترافي للحملة</span>
+            </div>
+            <div class="service-item item-team">
+              <div class="ic">🧑‍🤝‍🧑</div>
+              <span>فريق مبيعات محترف</span>
+            </div>
+            <div class="service-item item-reports">
+              <div class="ic">📊</div>
+              <span>متابعة وتقارير يومية</span>
+            </div>
+            <div class="service-item highlight item-game">
+              <div class="ic">🎮</div>
+              <span>العب واكسب</span>
+            </div>
+            <div class="service-item highlight-skate item-skate">
+              <div class="ic">🛼</div>
+              <span>فريق الاسكيت الدعائي</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey">
+          <div class="journey-title">الرحلة التسويقية</div>
+          <div class="stops">
+            <div class="stop">
+              <div class="dot">4</div><small>المكان</small>
+            </div>
+            <div class="dash"></div>
+            <div class="stop">
+              <div class="dot">3</div><small>المكان</small>
+            </div>
+            <div class="dash"></div>
+            <div class="stop">
+              <div class="dot">2</div><small>المكان</small>
+            </div>
+            <div class="dash"></div>
+            <div class="stop">
+              <div class="dot">1</div><small>المكان</small>
+            </div>
+          </div>
+          <span class="truck">🚚</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="brand" style="color:#fff;">حج عرفة <span style="opacity:.6;font-weight:600;">× النخبة
+            للتوكيلات</span></div>
+        <div class="tagline">شراكة ... نجاح ... ومبيعات أكبر</div>
+      </div>
+      <div class="footer-bottom">
+        <span>جودة .. نكهة .. ثقة</span>
+        <span>معًا نصنع الفرق</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Stagger children index for steps
+    document.querySelectorAll('.stagger').forEach(group => {
+      io.observe(group);
+      group.classList.add('reveal');
+    });
+
+    // Mobile menu toggle
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (burgerBtn && navLinks) {
+      burgerBtn.addEventListener('click', () => {
+        burgerBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          burgerBtn.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
